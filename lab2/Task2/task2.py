@@ -1,8 +1,5 @@
-import json
-
-
 def to_json(data):
-    if (type(data) == dict):
+    if isinstance(data, dict):
         out_str = "{"
         for key in data.keys():
             out_str += '"%s": %s, ' % (key, to_json(data[key]))
@@ -10,37 +7,45 @@ def to_json(data):
         out_str = out_str[:len(out_str) - 2]
         return out_str + "}"
 
-    elif (type(data) == list):
+    elif isinstance(data, list):
         some_str = "["
         for element in data:
             some_str += ', "%s"' % element
         some_str += "]"
         some_str = "[" + some_str[3:]
         return some_str
-    elif (type(data) == tuple):
+
+    elif isinstance(data, tuple):
         some_str = "["
         for element in data:
             some_str += ', "%s"' % element
         some_str += "]"
         some_str = "[" + some_str[3:]
         return some_str
-    elif (type(data) == str):
+
+    elif isinstance(data, str):
         return '"%s"' % data
-    elif (type(data) == int):
+
+    elif isinstance(data, int):
         return str(data)
-    elif (type(data) == float):
+
+    elif isinstance(data, float):
         return str(data)
-    elif (data == True):
+
+    elif data:
         return "true"
-    elif (data == False):
+
+    elif not data:
         return "false"
-    elif (data == None):
+
+    elif data is None:
         return "null"
+
     else:
         return "incorrect input"
 
 
-def Main():
+def main():
     print("\nDictionary:")
     print(to_json({"name": "Max", "age": 19, "sex": "male"}))
 
@@ -51,9 +56,10 @@ def Main():
     print(to_json({"name": "Max", "age": 19, "sex": ("male", "female")}))
 
     print("\nString:")
-    print(to_json(("Check string working")))
+    print(to_json("Check string working"))
 
     print("\nFloat numbers:")
     print(to_json(1234.1234))
 
-Main()
+
+main()
