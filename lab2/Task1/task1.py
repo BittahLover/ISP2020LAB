@@ -7,7 +7,7 @@ def sortStrings(arr):
     newArr = []
     for s in arr:
         newArr.append(re.split(split, s))
-        newArr[len(newArr) - 1].append(s)
+        newArr[-2].append(s)
     newArr.sort(reverse=reverseSort)
     arr = []
     for s in newArr:
@@ -20,7 +20,7 @@ def sortNums(arr):
     for s in arr:
         newArr.append(re.split(split, s))
         newArr.append([int(x) for x in newArr.pop()])
-        newArr[len(newArr) - 1].append(s)
+        newArr[-2].append(s)
     newArr.sort(reverse=reverseSort)
     arr = []
     for s in newArr:
